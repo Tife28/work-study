@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 # Create your models here.
 class Student(models.Model):
@@ -14,8 +15,8 @@ class Student(models.Model):
     gender_choice = (('GENDER', 'Gender'),('MALE', 'Male'), ('FEMALE', 'Female'))
     gender = models.CharField(max_length=50, choices = gender_choice, default ='GENDER' ) 
     fac_choice = (('FACULTY', 'Faculty'), ('HUMANITIES', 'Faculty of Humanities'), ('SMS', 'Faculty of Social and Management Sciences'), ('SCIENCE', 'Faculty of Science and Science Education')) 
-    faculty = models.CharField(max_length=50, choices = fac_choice, default = 'FACULTY')  
-    department = models.CharField(max_length=300)
+    faculty = models.CharField(max_length=50, choices = fac_choice, default = 'FACULTY', blank=True)  
+    department = models.CharField(max_length=300, blank=True)
     session_choices = (('SESSION', 'Session'), ('21/22', '2021/2022'), ('22/23', '2022/2023'), ('23/24', '2023/2024'), ('24/25', '2024/2025'))
     session = models.CharField(max_length=50, choices = session_choices, default ='SESSION') 
     semester_choices = (('SEMESTER', 'Semester'), ('FIRST', '1st Semester'), ('SECOND', '2nd Semester'))
@@ -44,7 +45,7 @@ class Student(models.Model):
     YES = 'Yes' 
     NO = 'No'
     exp_choice = [(YES, 'Yes'), (NO, 'No'), ('DONT_KNOW', "I don't think so")]
-    experience = models.CharField(max_length=50, choices = exp_choice , default='DONT_KNOW')  
+    experience = models.CharField(max_length=50, choices = exp_choice, default='DONT_KNOW')  
     expdet = models.TextField(blank= True) 
     hrs = models.IntegerField()  
     declaration = models.CharField(max_length=150) 
@@ -55,34 +56,34 @@ class Student(models.Model):
         db_table = "student"   
 
 class Recommendation(models.Model):
-    #student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    hodrec = models.TextField() 
-    hodname = models.CharField(max_length=150)  
-    hod_date = models.DateField()  
+    student = models.OneToOneField(Student, on_delete=models.CASCADE, blank=True, null=True)
+    hodrec = models.TextField(blank= True) 
+    hodname = models.CharField(max_length=150, blank= True)  
+    hod_date = models.DateField(default=date.today)  
     hodsign = models.FileField(upload_to='sign/', blank= True)
-    deanrec = models.TextField() 
-    deanname = models.CharField(max_length=150)  
-    dean_date = models.DateField()  
+    deanrec = models.TextField(blank= True) 
+    deanname = models.CharField(max_length=150, blank= True)  
+    dean_date = models.DateField(default=date.today)  
     deansign = models.FileField(upload_to='sign/',blank= True)
-    dsacom = models.TextField() 
-    dsaname = models.CharField(max_length=150)  
-    dsa_date = models.DateField()  
+    dsacom = models.TextField(blank= True) 
+    dsaname = models.CharField(max_length=150, blank= True)  
+    dsa_date = models.DateField(default=date.today)
     dsasign = models.FileField(upload_to='sign/',blank= True)
     pconsent = models.FileField(upload_to='pconsent/',blank= True)
-    unithead_comm= models.TextField()
-    unithead_name = models.CharField(max_length=150)  
-    unithead_date = models.DateField()  
+    unithead_comm= models.TextField(blank= True)
+    unithead_name = models.CharField(max_length=150, blank= True)  
+    unithead_date = models.DateField(default=date.today)
     unithead_sign = models.FileField(upload_to='sign/', blank= True) 
-    wspcomm = models.TextField() 
-    wspname = models.CharField(max_length=150)  
-    wsp_date = models.DateField()  
+    wspcomm = models.TextField(blank= True) 
+    wspname = models.CharField(max_length=150, blank= True)  
+    wsp_date = models.DateField(default=date.today)   
     wspsign = models.FileField(upload_to='sign/', blank= True)
     unit_choices = (('UNIT POSTED', 'Unit Posted'), ('CAFETERIA', 'Cafeteria'), ('LIBRARY', 'Library'), ('SUPERMARKET', 'Supermarket'), ('ICT UNIT', 'ICT Unit'), ('WATER WORKS', 'Water Works'), ('GENERAL AFFAIRS', 'General Affairs(Cleaning)')) 
-    unit_posted = models.CharField(max_length=150, choices = unit_choices, default = 'UNIT POSTED')
-    recomend_critchoice = (('RECOMMENDED', 'Recommended for Approval'), ('NOT RECOMMENDED', 'Not Recommended'))
-    recomend_crit = models.CharField(max_length=150, choices = recomend_critchoice)
-    vcapprove_choice = (('APPROVED', 'Approved'), ('NOT APPROVED', 'Not Approved'))
-    vcapprove = models.CharField(max_length=150, choices = vcapprove_choice)
+    unit_posted = models.CharField(max_length=150, choices = unit_choices, default = 'UNIT POSTED', blank= True)
+    recomend_critchoice = (('RECOMEND_CRIT', 'Recommendation Criteria'), ('RECOMMENDED', 'Recommended for Approval'), ('NOT RECOMMENDED', 'Not Recommended'))
+    recomend_crit = models.CharField(max_length=250, choices = recomend_critchoice, default='RECOMEND_CRIT', blank= True)
+    vcapprove_choice = (('VCAPPROVE', 'Vice Chancellor Approval'), ('APPROVED', 'Approved'), ('NOT APPROVED', 'Not Approved'))
+    vcapprove = models.CharField(max_length=250, choices = vcapprove_choice, default='VCAPPROVE', blank= True)
 
     class Meta:
         db_table= 'recommendation'

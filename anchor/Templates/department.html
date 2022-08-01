@@ -1,0 +1,71 @@
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script language="javascript" type="text/javascript">
+    function dynamicdropdown(listindex)
+    {
+        switch (listindex)
+        {
+        case "SCIENCE" :
+            document.getElementById("status").options[0]=new Option("Select status","");
+            document.getElementById("status").options[1]=new Option("Applied Geophysics","APPLIED_GEO");
+            document.getElementById("status").options[2]=new Option("Biology","BIOLOGY");
+            document.getElementById("status").options[3]=new Option("Biology Education","BIOEDU");
+            document.getElementById("status").options[4]=new Option("Biochemistry","BIOCHEM");
+            document.getElementById("status").options[5]=new Option("Biotechnology","BIOTECH");
+            document.getElementById("status").options[6]=new Option("Chemistry","CHEMISTRY");
+            document.getElementById("status").options[7]=new Option("Chemistry Education","CHEMISTRY_EDU");
+            document.getElementById("status").options[8]=new Option("Computer Education","COMPUTER_EDU");
+            document.getElementById("status").options[9]=new Option("Computer Science","COMPUTER");
+            document.getElementById("status").options[10]=new Option("Industrial Chemistry","INDUSTRIAL_CHEMISTRY");
+            document.getElementById("status").options[11]=new Option("Mathematics","MATHS");
+            document.getElementById("status").options[12]=new Option("Mathematics Education","MATHS_EDU");
+            document.getElementById("status").options[13]=new Option("Microbiology","MCB");
+            document.getElementById("status").options[14]=new Option("Physics","PHYSICS");
+            document.getElementById("status").options[15]=new Option("Physics Education","PHYSICS_EDU");
+            document.getElementById("status").options[16]=new Option("Physics with Electronics","PHYSICS_ELECT");
+            document.getElementById("status").options[17]=new Option("Political Science","POL_SCI");
+            break;
+        case "HUMANITIES" :
+            document.getElementById("status").options[0]=new Option("Select status","");
+            document.getElementById("status").options[1]=new Option("English and Literary Studies","ENGLISH");
+            document.getElementById("status").options[2]=new Option("French","FRENCH");
+            document.getElementById("status").options[3]=new Option("History and International Studies","HISTORY");
+            document.getElementById("status").options[4]=new Option("International Relations","INTER_REL");
+            document.getElementById("status").options[5]=new Option("Mass Communication","MASS_COMM");
+            break;
+        case "SMS" :
+            document.getElementById("status").options[0]=new Option("Select status","");
+            document.getElementById("status").options[1]=new Option("Accounting","ACCOUNTING");
+            document.getElementById("status").options[2]=new Option("Business Administration","BUSINESS_ADMIN");
+            document.getElementById("status").options[3]=new Option("Economics","ECONOMICS");
+            document.getElementById("status").options[4]=new Option("Finance","FINANCE");
+            break;
+        }
+        return true;
+    }
+    </script>
+    </head>
+    <title>Dynamic Drop Down List</title>
+    <body>
+    <div class="category_div" id="category_div">Faculty:
+        <select id="source" name="source" onchange="javascript: dynamicdropdown(this.options[this.selectedIndex].value);">
+        <option value="">Select Faculty</option>
+        <option value="HUMANITIES">Faculty of Humanities</option>
+        <option value="SCIENCE">Faculty of Science and Science Education</option>
+        <option value="SMS">Faculty of Social and Management Sciences</option>
+        </select>
+    </div>
+    <div class="sub_category_div" id="sub_category_div">Department:
+        <script type="text/javascript" language="JavaScript">
+        document.write('<select name="status" id="status"><option value="">Select status</option></select>')
+        </script>
+        <!-- <noscript>
+        <select id="status" name="status">
+            <option value="ACCOUNT">Accounting</option>
+            <option value="ECONOMICS">Economics</option>
+        </select>
+        </noscript> -->
+    </div>
+    </body>
+</html>

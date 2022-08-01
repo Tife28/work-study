@@ -143,6 +143,7 @@
                         {{ student.supermarket }} Supermarket<br>
                         {{ student.ict_unit }} ICT Unit<br>
                         {{ student.water_works }} Water Works<br>
+                        {{ student.general_affairs }} General Affairs (Cleaning)<br>
                         Others: <input type="text" class="container" name="others" id="id_others" maxlength="100" value="{{ student.others }}"/> 
                 </div>         
                 <input type="text" class="container" name="preferred" id="id_preferred" maxlength="50" value="{{ student.preferred }}"/> 
@@ -166,7 +167,7 @@
         <div class="col-12 mb-3">
         <h4 class="text-center text-white bg-danger p-3">Official Approval Section (Student should not Fill)</h4>
         </div>
-        <!-- <div class="col-4">
+        <div class="col-4">
             <h6 class="text-center">HoD's Recommendation
             </h6>
         </div>
@@ -181,7 +182,7 @@
                 {{ form.hod_date }}
             </div>
             <div class="col-4 mb-3">
-                {{ form.hodsign }}
+                Please upload digital signature {{ form.hodsign }}
             </div>
         </div>
         <div class="col-4">
@@ -199,7 +200,7 @@
                 {{ form.dean_date }}
             </div>
             <div class="col-4 mb-3">
-                {{ form.deansign }}
+                Please upload digital signature {{ form.deansign }}
             </div>
         </div>
         <div class="col-4">
@@ -217,7 +218,7 @@
                 {{ form.dsa_date }}
             </div>
             <div class="col-4 mb-3">
-                {{ form.dsasign }}
+                Please upload digital signature {{ form.dsasign }}
             </div>
         </div>
         <div class="col-4">
@@ -235,7 +236,7 @@
                 {{ form.unithead_date }}
             </div>
             <div class="col-4 mb-3">
-                {{ form.unithead_date }}
+                Please upload digital signature{{ form.unithead_sign }}
             </div>
         </div>
         <div class="col-4">
@@ -253,26 +254,18 @@
                 {{ form.wsp_date }}
             </div>
             <div class="col-4 mb-3">
-                {{ form.wspsign }}
+                Please upload digital signature{{ form.wspsign }}
             </div>
         </div>
         <div class="col-4 mb-3">
             {{ form.unit_posted }}
         </div>
         <div class="col-4 mb-3">
-            <select class="form-select">
-                <option selected>Recommendation Criteria</option>
-                <option value="21">Recommended for Approval</option>
-                <option value="22">Not Recommended</option>
-            </select>
+           {{form.recomend_crit}}
         </div>
         <div class="col-4 mb-3">
-            <select class="form-select">
-                <option selected>Vice Chancellor Approval</option>
-                <option value="21">Approved</option>
-                <option value="22">Disapproved</option>
-            </select>
-        </div> -->
+            {{form.vcapprove}}
+        </div>
     </div>
     <button type="submit" class="btn btn-success">Update</button>  
 </form>

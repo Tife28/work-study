@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <section>
     <form method="POST" class="container" action="">
@@ -34,9 +35,18 @@
             </div> 
             <div class="col-6 mb-3">
                 {{ form.faculty }}
+                <!-- <select id="source" name="source" onchange="javascript: dynamicdropdown(this.options[this.selectedIndex].value);">
+                     <option value="">Select Faculty</option>
+                    <option value="HUMANITIES">Faculty of Humanities</option>
+                    <option value="SCIENCE">Faculty of Science and Science Education</option>
+                    <option value="SMS">Faculty of Social and Management Sciences</option>
+                </select> -->
             </div>
             <div class="col-6 mb-3">
                 {{ form.department }}
+                <!-- <script type="text/javascript" language="JavaScript">
+                    document.write('<select name="status" id="status"><option value="">Select Faculty first</option></select>')
+                </script> -->
             </div> 
             <div class="col-12 mb-3">
                 <h4 class="text-center">CGPA as at Last Semester/Session
