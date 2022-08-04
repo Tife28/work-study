@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <section>
-        <form method="POST" class="container" action="/update/{{student.id}}">  
+        <form method="POST" class="container" action="/update/{{student.id}}" enctype="multipart/form-data">  
                 {% csrf_token %}  
             <div class="row g-3 align-items-center">
                 <div class="col-4 mb-3">
@@ -34,7 +34,8 @@
                 </div>
                 <div class="col-4 mb-3">
                     <label for ='dob'><b>Date of Birth: </b></label>
-                    <input type="tdate" class="container" name="dob" id="id_dob" required value="{{ student.dob }}"/>  
+                    {{ studentform.dob }}
+                    <!-- <input type="tdate" class="container" name="dob" id="id_dob" required value="{{ student.dob }}"/>   -->
                 </div>
                 <div class="col-4 mb-3">
                     <label for ='gender'><b>Gender: </b></label>
@@ -152,11 +153,12 @@
                 <h6>How many hours per week are you available to work?</h6>
             </div>
                 <div class="col-8 mb-5">
-                    <input type="number" class="container" name="preferred" id="id_preferred" required maxlength="20" value="{{ student.hrs }}"/> 
+                    <input type="number" class="container" name="hrs" id="id_hrs" required maxlength="20" value="{{ student.hrs }}"/> 
                 </div>
                 <div class="col-12 mb-5">
                     <h6>DECLARATION:</h6>
                     <label for ='declaration' class="form_control">I </label>
+                    <input type="hidden" name="declaration" value="{{ student.declaration }}">
                     {{ student.declaration }} hereby declare that the information supplied above is correct and if at any time any of them is found to be untrue, I shall forfeit  the opportunity to participate in the Work Study Programme of the University.  I also declare that if I damage any equipment in my place of assignment I shall reimburse the University for the full recovery price of the item.
                 </div>
         <div class="col-4 mb-3">
